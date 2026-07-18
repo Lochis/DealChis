@@ -1,6 +1,6 @@
 import type { Client } from 'discord.js';
-import { registerDailyJob } from './daily.js';
+import { registerThirtyMinuteJob } from './daily.js';
 
 export function startJobs(client: Client): void {
-  registerDailyJob(client);
+  registerThirtyMinuteJob(client);
 }

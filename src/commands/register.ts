@@ -6,9 +6,9 @@ import { updateGuildToChannel } from '../mongo/index.js';
 export const register: Command = {
   data: new SlashCommandBuilder()
     .setName('register')
-    .setDescription('Register a channel with notifications at 9:00AM every day for new deals!'),
+    .setDescription('Register a channel to get notified every 30 minutes (if there are new ones) for FREE deals!'),
   async execute(interaction) {
-    const res = await updateGuildToChannel(interaction.guild!, interaction.channel!, UpdateType.Register)
+    const res = await updateGuildToChannel(interaction.guild!, interaction.channel!.id, UpdateType.Register)
     await interaction.reply({ content: res });
   },
 };

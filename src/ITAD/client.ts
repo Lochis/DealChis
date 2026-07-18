@@ -1,13 +1,14 @@
 import axios, { AxiosError } from 'axios';
 import 'dotenv/config';
 
-interface Deal {
+export interface Deal {
   id: string;
   title: string;
   type: string;
   banner?: string;
   price: number;
-  drm: { id: number, name: string; }[];
+  regPrice: number;
+  drm: { id: number; name: string; }[];
   url: string;
 }
 
@@ -85,14 +86,6 @@ export class ITAD {
     return [];
   }
 
-  cacheDeals(deals: Deal[]): void {
-    // cache the deals so that the same ones aren't re-sent
-
-  }
-
-  getCached() {
-
-  }
 }
 
 export const itad = new ITAD();

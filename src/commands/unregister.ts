@@ -7,7 +7,7 @@ export const unregister: Command = {
     .setName('unregister')
     .setDescription('Unregister a registered channel'),
   async execute(interaction) {
-    const res = await updateGuildToChannel(interaction.guild!, interaction.channel!, UpdateType.Unregister)
+    const res = await updateGuildToChannel(interaction.guild!, interaction.channel!.id, UpdateType.Unregister)
     await interaction.reply({ content: res });
   },
 };
