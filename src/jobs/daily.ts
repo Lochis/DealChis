@@ -9,17 +9,15 @@ import { UpdateType } from '../types.js';
 export function registerThirtyMinuteJob(client: Client): void {
   // Runs every day at 09:00 in the server's local timezone.
   // Change the expression below to adjust the schedule (see https://crontab.guru).
-  //cron.schedule('0 9 * * *', async () => {
   cron.schedule('0,30 * * * *', async () => {
     try {
       await sendDeals(client);
     } catch (error) {
-      console.error('[daily] Failed to send deals:', error);
+      console.error('[30 min] Failed to send deals:', error);
     }
   });
 
-  //console.log('[daily] Scheduled daily job for 09:00.');
-  console.log('[daily] Scheduled daily job for 17:12.');
+  console.log('[30 min] Scheduled job for every 30 minutes.');
 }
 
 // TODO: move to ITAD client
@@ -36,9 +34,7 @@ async function sendDeals(client: Client) {
       const channel = (await client.channels.fetch(channelId)) as TextChannel | null;
       try {
         if (channel == null) {
-          // TODO: Remove channel from the guildtoChannel 
           await updateGuildToChannel(guild, channelId, UpdateType.Unregister);
-
           throw new Error("Channel does not exist.");
         }
         // get cached deals for the channel id
