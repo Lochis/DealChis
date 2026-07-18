@@ -5,6 +5,11 @@ export interface Command {
   execute: (interaction: import('discord.js').ChatInputCommandInteraction) => Promise<void> | void;
 }
 
+export enum UpdateType {
+  Register = "Register",
+  Unregister = "Unregister"
+}
+
 export interface Event<K extends keyof ClientEvents = keyof ClientEvents> {
   name: K;
   once?: boolean;
